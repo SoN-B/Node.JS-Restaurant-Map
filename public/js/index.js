@@ -199,4 +199,4 @@ function closeMarker() {
     }
 }
 
-setMap(dataSet);
+setMap(dataSet); // 처음에는 마커 전부 보이도록
