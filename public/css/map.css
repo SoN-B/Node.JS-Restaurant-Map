@@ -1,0 +1,25 @@
+/* 인포윈도우 설정 */
+.infowindow {
+    width: 25rem;
+}
+
+.infowindow-img-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+.infowindow-img {
+    width: 100%;
+}
+
+.infowindow-title {
+    font-size: 2rem;
+}
+
+.infowindow-address {
+    font-size: 1.6rem;
+}
+
+.infowindow-btn {
+    font-size: 1.6rem;
+}
