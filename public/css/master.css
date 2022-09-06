@@ -9,6 +9,8 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    /* box-sizing은 박스의 크기를 어떤 것을 기준으로 계산할지를 정하는 속성 */
+    /* border-box : 테두리를 기준으로 크기를 정합니다. */
 }
 
 html {
@@ -65,10 +67,16 @@ main {
     font-size: 3.5rem;
 }
 
+.category-list {
+    text-align: center;
+    /* 컨텐츠 요소를 가운데 정렬 ( 인라인 요소를 가운데 정렬 ) */
+    /* 정렬하려한 category-item 의 부모태그인 category-list에게 속성을 준거임 */
+}
+
 .category-item {
     /* 버튼을 담고있는 div.category-list는 기본적으로 너비가 100% */
     margin: 10px 0;
-    width: 24.8%;
+    width: 24.5%;
     height: 5rem;
     background: none;
     border: none;
@@ -81,21 +89,23 @@ main {
     cursor: pointer;
 }
 
+#map {
+    /* % 단위는 부모태그를 기준으로함 
+    현재 #map의 부모(inner) 높이가 X */
+    flex-grow: 0;
+    /* 남는 여백 남겨둠 */
+    
+    margin: 0 auto;
+    
+    width: 75%;
+    height: 70%;
+    /* 내 생각에는 map의 부모태그는 main이며 이것의 75%를 차지하게 되는거같음 */
+}
+/* ---------------------------------------------------- */
 @media all and (min-width: 1024px) {
     /* 최소px이 1024px를 넘을 경우 */
     .inner {
         max-width: 1024px;
         margin: 0 auto;
     }
-}
-
-#map {
-    /* % 단위는 부모태그를 기준으로함 
-    현재 #map의 부모(inner) 높이가 X */
-    flex-grow: 0;
-    /* 남는 여백 남겨둠 */
-
-    width: 75%;
-    height: 75%;
-    /* 내 생각에는 map의 부모태그는 main이며 이것의 75%를 차지하게 되는거같음 */
 }
