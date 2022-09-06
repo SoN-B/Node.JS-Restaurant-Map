@@ -97,7 +97,7 @@ main {
     
     margin: 0 auto;
     
-    width: 75%;
+    width: 85%;
     height: 70%;
     /* 내 생각에는 map의 부모태그는 main이며 이것의 75%를 차지하게 되는거같음 */
 }
