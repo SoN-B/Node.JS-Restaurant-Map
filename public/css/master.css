@@ -33,6 +33,7 @@ nav {
 
 .inner {
     padding: 0 1.5rem;
+    padding-bottom: 1.5rem;
 }
 
 .nav-container {
@@ -76,16 +77,20 @@ main {
 
 .category-item {
     /* 버튼을 담고있는 div.category-list는 기본적으로 너비가 100% */
-    margin: 10px 0;
-    width: 24.5%;
+    margin: 10px 15px;
+    width: 20%;
     height: 5rem;
+    
     background: none;
-    border: none;
+    border: solid rgb(18, 168, 18, .5) 1px;
+    border-radius: 15px;
+    box-shadow: 0.1px 0.1px 5px green;
+
     font-family: inherit;
     font-size: 1.6rem;
 }
 
-.category-item:hover {
+.category-item:focus {
     color: rgb(18, 168, 18);
     cursor: pointer;
 }
@@ -97,10 +102,13 @@ main {
     /* 남는 여백 남겨둠 */
     
     margin: 0 auto;
-    
     width: 85%;
     height: 70%;
-    /* 내 생각에는 map의 부모태그는 main이며 이것의 75%를 차지하게 되는거같음 */
+    /* 내 생각에는 map의 부모태그는 main이며 이것의 (number)%를 차지하게 되는거같음 */
+
+    border: solid rgb(18, 168, 18, .5) 1px;
+    border-radius: 15px;
+    box-shadow: 0.1px 0.1px 5px green;
 }
 /* ---------------------------------------------------- */
 @media all and (min-width: 1024px) {
