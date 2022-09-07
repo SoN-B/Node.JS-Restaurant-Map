@@ -5,6 +5,7 @@
     font-style: normal;
 }
 
+/* 브라우저마다 같은태그라도 기본스타일이 다름 (통일화) */
 * {
     padding: 0;
     margin: 0;
