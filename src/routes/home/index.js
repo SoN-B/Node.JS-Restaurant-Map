@@ -9,4 +9,7 @@ router.get("/", (req, res) => {
 });
 router.get("/dummy", ctrl.test);
 
+router.get("/students", ctrl.readStudents);
+// router.post("/students", ctrl.createStudents);
+
 module.exports = router;
