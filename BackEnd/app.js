@@ -20,11 +20,10 @@ app.use(compression());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("./public"));
-app.set("views", "./views");
-app.set("view engine", "ejs");
 
 app.use(cors());
+// 로컬에서 프런트 서버와 백엔드 서버의 포트를 다르게 사용할 때 발생하는 문제인 CORS 해결
+// CORS : 도메인 및 포트가 다른 서버로 클라이언트가 요청했을 때 브라우저가 보안상의 이유로 API를 차단하는 문제
 
 app.use("/", home);
 
