@@ -7,6 +7,7 @@ const pool = mysql.createPool({
     port: secret.port,
     password: secret.password,
     database: secret.database,
+    connectionLimit: 10,
 });
 
 module.exports = {

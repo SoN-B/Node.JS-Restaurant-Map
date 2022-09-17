@@ -17,27 +17,24 @@ let zoomControl = new kakao.maps.ZoomControl();
 map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
 // **********************************************************
-// 2. 더미데이터 준비하기 (제목, 주소, url, 카테고리)
-const dataSet = [
-    {
-        title: "희락돈까스",
-        address: "서울 영등포구 양산로 210",
-        url: "https://www.youtube.com/watch?v=1YOJbOUR4vw&t=88s",
-        category: "양식",
-    },
-    {
-        title: "즉석우동짜장",
-        address: "서울 영등포구 대방천로 260",
-        url: "https://www.youtube.com/watch?v=1YOJbOUR4vw&t=88s",
-        category: "한식",
-    },
-    {
-        title: "아카사카",
-        address: "서울 서초구 서초대로74길 23",
-        url: "https://www.youtube.com/watch?v=1YOJbOUR4vw&t=88s",
-        category: "일식",
-    },
-];
+// 2. 데이터 준비하기 (제목, 주소, url, 카테고리)
+
+async function getDataSet(category) {
+    let qs = category; // 쿼리스트링
+    if (!qs) {
+        qs = "";
+    }
+
+    const dataSet = await axios({
+        method: "get", // http method
+        url: `http://localhost:3000/restaurants?category=${qs}`,
+        headers: {}, // packet header
+        data: {}, // packet body
+    });
+    return dataSet.data.result;
+}
+
+getDataSet();
 
 // **********************************************************
 // 3. 여러개 마커 찍기 주소 - 좌표 변환
@@ -98,7 +95,7 @@ function makeOutListener(infowindow) {
 function getContent(data) {
     let videoId = "";
 
-    let replaceUrl = data.url;
+    let replaceUrl = data.videoUrl;
     replaceUrl = replaceUrl.replace("https://youtu.be/", "");
     replaceUrl = replaceUrl.replace("https://www.youtube.com/embed/", "");
     replaceUrl = replaceUrl.replace("https://www.youtube.com/watch?v=", "");
@@ -113,7 +110,7 @@ function getContent(data) {
 		<div class="infowindow-body">
 			<h5 class="infowindow-title">${data.title}</h5>
 			<p class="infowindow-text">${data.address}</p>
-			<a href="https://youtu.be/${videoId}" target="_blank" class="infowindow-btn">영상이동</a>
+			<a href="${data.videoUrl}" target="_blank" class="infowindow-btn">영상이동</a>
 		</div>
 	</div>`;
     return result;
@@ -171,25 +168,24 @@ const categoryMap = {
 };
 
 // 카테고리 클릭 핸들러
-function categoryHandler(event) {
-    const categoryId = event.target.id; // korean, china, japan ...
+async function categoryHandler(event) {
+    const categoryId = event.target.id;
     const category = categoryMap[categoryId];
 
-    // 데이터 분류
-    let categorizedDataSet = [];
-    for (let data of dataSet) {
-        if (data.category === category) {
-            categorizedDataSet.push(data);
-        }
+    try {
+        // 데이터 분류
+        let categorizedDataSet = await getDataSet(category);
+
+        // 기존 마커 삭제
+        closeMarker();
+
+        // 기존 인포윈도우 닫기
+        closeInfowindow();
+
+        setMap(categorizedDataSet);
+    } catch (error) {
+        console.error(error);
     }
-
-    // 기존 마커 삭제
-    closeMarker();
-
-    // 기존 인포윈도우 닫기
-    closeInfowindow();
-    // 실행
-    setMap(categorizedDataSet);
 }
 
 // 기존 마커 삭제 함수
@@ -199,5 +195,15 @@ function closeMarker() {
         marker.setMap(null); // kakao 전용 프로퍼티 (내가만든 사용자 지정 함수 X)
     }
 }
+// **********************************************
+// API 호출
+async function setting() {
+    try {
+        const dataSet = await getDataSet();
+        setMap(dataSet); // 마커가 보이도록
+    } catch (error) {
+        console.error(error);
+    }
+}
 
-setMap(dataSet); // 처음에는 마커 전부 보이도록
+setting();
