@@ -10,11 +10,8 @@
 5. 카테고리 분류
 */
 
-/*
-**********************************************************
-1. 지도 생성 & 확대 축소 컨트롤러
-https://apis.map.kakao.com/web/sample/addMapControl/
-*/
+// **********************************************************
+// 1. 지도 생성 & 확대 축소 컨트롤러
 
 var container = document.getElementById("map"); //지도를 담을 영역의 DOM 레퍼런스
 var options = {
@@ -28,11 +25,8 @@ var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리
 // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
 var zoomControl = new kakao.maps.ZoomControl();
 map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-
-/*
-**********************************************************
-2. 더미데이터 준비하기 (제목, 주소, url, 카테고리)
-*/
+// **********************************************************
+// 2. 더미데이터 준비하기 (제목, 주소, url, 카테고리)
 
 async function getDataSet(category) {
     let qs = category;
@@ -42,7 +36,8 @@ async function getDataSet(category) {
 
     const dataSet = await axios({
         method: "get", // http method
-        url: `http://43.200.140.142:3000/restaurants?category=${qs}`,
+        //url: `http://127.0.0.1:3000/restaurants?category=${qs}`, // 로컬환경
+        url: `http://43.200.140.142:3000/restaurants?category=${qs}`, // AWS 환경
         headers: {}, // packet header
         data: {}, // packet body
     });
@@ -50,14 +45,8 @@ async function getDataSet(category) {
 }
 
 getDataSet();
-
-/*
-**********************************************************
-3. 여러개 마커 찍기
-  * 주소 - 좌표 변환
-https://apis.map.kakao.com/web/sample/multipleMarkerImage/ (여러개 마커)
-https://apis.map.kakao.com/web/sample/addr2coord/ (주소로 장소 표시하기)
-*/
+// **********************************************************
+// 3. 여러개 마커 찍기
 
 // 주소-좌표 변환 객체를 생성합니다
 var geocoder = new kakao.maps.services.Geocoder();
@@ -78,13 +67,8 @@ function getCoordsByAddress(address) {
     });
 }
 
-/* 
-*************************************************************
-4. 마커에 인포윈도우 붙이기
-  * 마커에 클릭 이벤트로 인포윈도우 https://apis.map.kakao.com/web/sample/multipleMarkerEvent/
-  * url에서 섬네일 따기
-  * 클릭한 마커로 지도 센터 이동 https://apis.map.kakao.com/web/sample/moveMap/
-*/
+// *************************************************************
+// 4. 마커에 인포윈도우 붙이기
 
 function getContent(data) {
     // 유튜브 섬네일 id 가져오기
@@ -98,20 +82,20 @@ function getContent(data) {
 
     // 인포윈도우 가공하기
     return `
-  <div class="infowindow">
-      <div class="infowindow-img-container">
-        <img
-          src="https://img.youtube.com/vi/${finUrl}/mqdefault.jpg"
-          class="infowindow-img"
-        />
-      </div>
-      <div class="infowindow-body">
-        <h5 class="infowindow-title">${data.title}</h5>
-        <p class="infowindow-address">${data.address}</p>
-        <a href="${data.videoUrl}" class="infowindow-btn" target="_blank">영상이동</a>
-      </div>
-    </div>
-  `;
+    <div class="infowindow">
+        <div class="infowindow-img-container">
+            <img
+            src="https://img.youtube.com/vi/${finUrl}/mqdefault.jpg"
+            class="infowindow-img"
+            />
+        </div>
+        <div class="infowindow-body">
+            <h5 class="infowindow-title">${data.title}</h5>
+            <p class="infowindow-address">${data.address}</p>
+            <a href="${data.videoUrl}" class="infowindow-btn" target="_blank">영상이동</a>
+        </div>
+        </div>
+    `;
 }
 
 async function setMap(dataSet) {
@@ -169,11 +153,8 @@ function makeOutListener(infowindow) {
         infowindow.close();
     };
 }
-
-/*
-**********************************************
-5. 카테고리 분류
-*/
+// **********************************************
+// 5. 카테고리 분류
 
 // 카테고리
 const categoryMap = {
