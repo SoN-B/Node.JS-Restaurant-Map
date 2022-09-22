@@ -165,3 +165,14 @@ exports.createJwt = async function (req, res) {
         return false;
     }
 };
+
+// 로그인 유지, 토큰 검증
+exports.readJwt = async function (req, res) {
+    const { userIdx, nickname } = req.verifiedToken;
+
+    return res.send({
+        result: { userIdx: userIdx, nickname: nickname },
+        code: 200, // 요청 실패시 400번대 코드
+        message: "유효한 토큰입니다.",
+    });
+};
