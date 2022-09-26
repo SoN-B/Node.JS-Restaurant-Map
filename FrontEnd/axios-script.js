@@ -36,8 +36,9 @@ async function getDataSet(category) {
 
     const dataSet = await axios({
         method: "get", // http method
-        url: `http://127.0.0.1:3000/restaurants?category=${qs}`, // 로컬환경
+        //url: `http://127.0.0.1:3000/restaurants?category=${qs}`, // 로컬환경
         //url: `http://43.200.140.142:3000/restaurants?category=${qs}`, // AWS 환경
+        url: `https://www.restaurantmap.site/restaurants?category=${qs}`, // HTTPS & 도메인 적용
         headers: {}, // packet header
         data: {}, // packet body
     });
