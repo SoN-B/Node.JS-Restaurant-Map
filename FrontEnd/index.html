@@ -20,8 +20,26 @@
     <nav>
         <div class="inner">
             <div class="nav-container">
-                <h1 class="nav-title">맛집지도</h1>
-                <button class="nav-contact">Contact</button>
+                <h1 class="nav-title"><a href="./index.html">맛집지도</a></h1>
+    
+                <div class="sign-container">
+                <!-- 비회원 -->
+                <div class="unsigned">
+                    <a href="./signin.html">로그인/회원가입</a>
+                </div>
+    
+                <!-- 회원 -->
+                <div class="signed hidden">
+                    <div class="dropdown">
+                    <div class="dropdown-button">
+                        안녕하세요. <span class="nickname"></span>님.
+                    </div>
+                    <div class="dropdown-content">
+                        <button id="sign-out">로그아웃</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -59,6 +77,7 @@
         referrerpolicy="no-referrer">
     </script>
     <script src="./axios-script.js" defer></script>
+    <script src="./header.js" defer></script>
 </body>
 
 </html>

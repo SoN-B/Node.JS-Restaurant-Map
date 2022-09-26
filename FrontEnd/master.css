@@ -111,6 +111,55 @@ main {
     box-shadow: 0.1px 0.1px 5px green;
 }
 /* ---------------------------------------------------- */
+/* 회원용/비회원용 헤더 설정 */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-button {
+    font-family: inherit;
+    font-size: 2.5rem;
+    border: none;
+    background: none;
+}
+
+/* 로그인 버튼 기본값: 숨김처리 */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    width: 100%;
+}
+
+.dropdown-content button {
+    display: block;
+    font-size: 2rem;
+    font-family: inherit;
+    width: 100%;
+    border: none;
+}
+
+.dropdown-content button:hover {
+    color: white;
+    background-color: #606060;
+}
+
+/* 호버시 로그아웃 버튼 보이도록 설정 */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+.sign-container {
+    font-size: 2.5rem;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+/* ---------------------------------------------------- */
 @media all and (min-width: 1024px) {
     /* 최소px이 1024px를 넘을 경우 */
     .inner {
