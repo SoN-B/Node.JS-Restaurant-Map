@@ -46,10 +46,10 @@ async function signup(event) {
     });
 
     // 4. 요청이 성공적이지 않다면, alert message
-    const isValidSignUp = signUpReturn.data.code == 200;
+    const isValidSignUp = signUpReturn.data.code;
 
-    if (!isValidSignUp) {
-        return alert("요청에 문제가 생겼습니다.");
+    if (isValidSignUp === 409) {
+        return alert(signUpReturn.data.message);
     }
 
     // 5. 요청이 성공하면, jwt를 localstorage에 저장하고 main page 이동

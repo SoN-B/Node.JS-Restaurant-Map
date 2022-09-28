@@ -50,35 +50,6 @@ exports.readRestaurants = async function (req, res) {
 exports.createUsers = async function (req, res) {
     const { userID, password, nickname } = req.body;
 
-    // 유저 데이터 검증
-    const userIDRegExp = /^[a-z]+[a-z0-9]{5,19}$/; // 아이디 정규식 영문자로 시작하는 영문자 또는 숫자 6-20
-    const passwordRegExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,16}$/; // 비밀번호 정규식 8-16 문자, 숫자 조합
-    const nicknameRegExp = /^[가-힣|a-z|A-Z|0-9|]{2,10}$/; // 닉네임 정규식 2-10 한글, 숫자 또는 영문
-
-    if (!userIDRegExp.test(userID)) {
-        return res.send({
-            isSuccess: false,
-            code: 400,
-            message: "아이디 정규식 영문자로 시작하는 영문자 또는 숫자 6-20",
-        });
-    }
-
-    if (!passwordRegExp.test(password)) {
-        return res.send({
-            isSuccess: false,
-            code: 400,
-            message: "비밀번호 정규식 8-16 문자, 숫자 조합",
-        });
-    }
-
-    if (!nicknameRegExp.test(nickname)) {
-        return res.send({
-            isSuccess: false,
-            code: 400,
-            message: "닉네임 정규식 2-10 한글, 숫자 또는 영문",
-        });
-    }
-
     try {
         const connection = await pool.getConnection(async (conn) => conn);
         try {
@@ -88,7 +59,7 @@ exports.createUsers = async function (req, res) {
                     isSuccess: false,
                     code: 409,
                     // Conflict(409) : 리소스의 현재 상태와 충돌해서 해당 요청을 처리할 수 없어 클라이언트가 충돌을 수정해서 다시 요청을 보내야함
-                    message: "아이디 중복",
+                    message: "아이디가 중복됩니다",
                 });
             }
 
