@@ -6,7 +6,6 @@ const ctrl = require("../../controllers/index");
 const jwtMiddleware = require("../../../config/jwtMiddleware");
 
 router.get("/restaurants", ctrl.readRestaurants);
-
 // 회원가입
 router.post("/sign-up", ctrl.createUsers);
 // 로그인

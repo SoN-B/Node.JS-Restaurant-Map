@@ -29,6 +29,16 @@
             "date": 1664223079068,
             "name": "log\\2022-09-27-smart-push.log",
             "hash": "60acc5f776d7ac9e34ad584060d427c696e6074b300e4a0bae99fae00ad2a3d2"
+        },
+        {
+            "date": 1664375429222,
+            "name": "log\\2022-09-28-smart-push.log",
+            "hash": "0966336f959ed371e66c147fa0f3d3856ca01e8a1aef2923716d348ca2194e6a"
+        },
+        {
+            "date": 1664377218274,
+            "name": "log\\2022-09-29-smart-push.log",
+            "hash": "93ba2ff1f73ef5e83b31606985334f8fe4595f2b45e9b32227fb87769c8a820b"
         }
     ],
     "hashType": "sha256"

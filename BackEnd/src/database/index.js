@@ -18,6 +18,15 @@ exports.insertUsers = async function (connection, userID, password, nickname) {
     const Params = [userID, password, nickname];
 
     const rows = await connection.query(Query, Params);
+    return rows;
+};
+
+// 중복검사
+exports.isExistUsers = async function (connection, userID) {
+    const Query = `SELECT status FROM Users where userID = ? and status = 'A';`;
+    const Param = userID;
+
+    const rows = await connection.query(Query, Param);
 
     return rows;
 };
