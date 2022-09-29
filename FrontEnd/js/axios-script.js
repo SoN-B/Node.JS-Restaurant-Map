@@ -165,7 +165,7 @@ const categoryMap = {
     wheat: "분식",
     meat: "구이",
     sushi: "회/초밥",
-    etc: "기타",
+    all: "전체",
 };
 
 const categoryList = document.querySelector(".category-list");
@@ -176,16 +176,19 @@ async function categoryHandler(event) {
     const category = categoryMap[categoryId];
 
     try {
-        // 데이터 분류
-        let categorizedDataSet = await getDataSet(category);
-
         // 기존 마커 삭제
         closeMarker();
 
         // 기존 인포윈도우 닫기
         closeInfoWindow();
 
-        setMap(categorizedDataSet);
+        if (category === "전체") {
+            initSetting();
+        } else {
+            // 데이터 분류
+            let categorizedDataSet = await getDataSet(category);
+            setMap(categorizedDataSet);
+        }
     } catch (error) {
         console.error(error);
     }
@@ -198,7 +201,7 @@ function closeMarker() {
     }
 }
 
-async function setting() {
+async function initSetting() {
     try {
         const dataSet = await getDataSet();
         setMap(dataSet);
@@ -207,4 +210,4 @@ async function setting() {
     }
 }
 
-setting();
+initSetting();
