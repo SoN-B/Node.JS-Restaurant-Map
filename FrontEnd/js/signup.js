@@ -6,7 +6,6 @@
 3. 회원가입 API 요청
 4. 요청이 성공적이지 않다면, alert message
 5. 요청이 성공하면, jwt를 localstorage에 저장하고 main page 이동
-
 */
 
 //let url = "http://127.0.0.1:3000";

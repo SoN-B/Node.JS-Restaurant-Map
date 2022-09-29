@@ -67,7 +67,6 @@ function getCoordsByAddress(address) {
         });
     });
 }
-
 // *************************************************************
 // 4. 마커에 인포윈도우 붙이기
 
@@ -83,18 +82,18 @@ function getContent(data) {
 
     // 인포윈도우 가공하기
     return `
-    <div class="infowindow">
-        <div class="infowindow-img-container">
-            <img
-            src="https://img.youtube.com/vi/${finUrl}/mqdefault.jpg"
-            class="infowindow-img"
-            />
-        </div>
-        <div class="infowindow-body">
-            <h5 class="infowindow-title">${data.title}</h5>
-            <p class="infowindow-address">${data.address}</p>
-            <a href="${data.videoUrl}" class="infowindow-btn" target="_blank">영상이동</a>
-        </div>
+        <div class="infowindow">
+            <div class="infowindow-img-container">
+                <img
+                src="https://img.youtube.com/vi/${finUrl}/mqdefault.jpg"
+                class="infowindow-img"
+                />
+            </div>
+            <div class="infowindow-body">
+                <h5 class="infowindow-title">${data.title}</h5>
+                <p class="infowindow-address">${data.address}</p>
+                <a href="${data.videoUrl}" class="infowindow-btn" target="_blank">영상이동</a>
+            </div>
         </div>
     `;
 }
@@ -173,7 +172,7 @@ const categoryList = document.querySelector(".category-list");
 categoryList.addEventListener("click", categoryHandler);
 
 async function categoryHandler(event) {
-    const categoryId = event.target.id;
+    const categoryId = event.target.id; // 이벤트를 발생시킨 요소의 id
     const category = categoryMap[categoryId];
 
     try {
